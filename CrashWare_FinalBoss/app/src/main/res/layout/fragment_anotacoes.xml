@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/fundo_claro">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Header -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@drawable/bg_gradienteanotacoes"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Titulo Software -->
+            <LinearLayout
+                android:id="@+id/NomeAnotacoes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp"
+                android:elevation="10dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/header">
+
+                <!-- Imagem Software -->
+                <ImageView
+                    android:id="@+id/imgAnotacoes"
+                    android:layout_width="70dp"
+                    android:layout_marginStart="-15dp"
+                    android:layout_height="70dp"
+                    android:src="@drawable/marcacao_livro_icon"
+                    app:tint="@color/branco" />
+
+                <!-- Escrito Software -->
+                <TextView
+                    android:id="@+id/txtAnotacoes"
+                    android:layout_marginStart="-5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_extrabold"
+                    android:text="Anotações"
+                    android:textAlignment="center"
+                    android:textColor="@color/branco"
+                    android:textSize="50dp" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Barra de Pesquisa -->
+        <EditText
+            android:id="@+id/txtBarraPesquisa"
+            android:layout_width="360dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_cards"
+            android:textColor="@color/preto"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="55dp"
+            android:drawableEnd="@drawable/lupa_icon"
+            android:fontFamily="@font/inter_semibold"
+            android:textSize="18sp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:hint="Pesquise"
+            android:textColorHint="@color/azul"
+            app:layout_constraintTop_toBottomOf="@id/header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintTop_toBottomOf="@id/txtBarraPesquisa"
+            app:layout_constraintBottom_toTopOf="@id/addAnotacao"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/addAnotacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@drawable/bg_botaoaddanotacao"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Adicionar Anotacao -->
+            <ImageView
+                android:id="@+id/imgAddAnotacoes"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/add_icon"
+                app:layout_constraintStart_toStartOf="@id/addAnotacao"
+                app:layout_constraintTop_toTopOf="@id/addAnotacao"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <View
+            android:id="@+id/espaco_nav_bar"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            app:layout_constraintTop_toBottomOf="@id/addAnotacao" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fundo_claro">
+
+        <!-- Header -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@color/branco"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/addAnotacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:padding="5dp"
+                android:background="@drawable/bg_voltar"
+                app:layout_constraintTop_toTopOf="@id/header"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <!-- Adicionar Anotacao -->
+                <ImageView
+                    android:id="@+id/imgVoltarNovaAnotacao"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/seta_icon"
+                    app:layout_constraintStart_toStartOf="@id/addAnotacao"
+                    app:layout_constraintTop_toTopOf="@id/addAnotacao" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/txtVoltar"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/righteous"
+                android:text="Voltar"
+                android:textColor="@color/azul"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@id/addAnotacao"
+                app:layout_constraintTop_toTopOf="@id/addAnotacao" />
+
+            <Button
+                android:id="@+id/btnEditarAnotacao"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_botaoeditar"
+                android:fontFamily="@font/righteous"
+                android:text="Editar"
+                android:textAllCaps="true"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:backgroundTint="@null"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/header" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/header">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp">
+
+        <EditText
+            android:id="@+id/txtTituloAnotacao"
+            android:layout_width="375dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_cardanotacao_titulo"
+            android:fontFamily="@font/righteous"
+            android:padding="8dp"
+            android:text="ESTRUTURA CONDICIONAL"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textColor="@color/azul"
+            android:textSize="18sp"
+            android:letterSpacing="0.03"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/txtCriadoEm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/righteous"
+            android:letterSpacing="0.03"
+            android:text="CRIADO EM"
+            android:textAlignment="center"
+            android:textColor="@color/azul"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@id/cardAnotacao"
+            app:layout_constraintTop_toBottomOf="@id/txtTituloAnotacao" />
+
+        <TextView
+            android:id="@+id/txtDataCriacao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/righteous"
+            android:letterSpacing="0.03"
+            android:text="01/04/2026"
+            android:textAlignment="center"
+            android:textColor="@color/azul"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/txtCriadoEm"
+            app:layout_constraintTop_toBottomOf="@id/txtTituloAnotacao" />
+
+        <TextView
+            android:id="@+id/txtEditadoEm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/righteous"
+            android:letterSpacing="0.03"
+            android:text="EDITADO EM"
+            android:textAlignment="center"
+            android:textColor="@color/azul"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/txtDataEdicao"
+            app:layout_constraintTop_toBottomOf="@id/txtTituloAnotacao" />
+
+        <TextView
+            android:id="@+id/txtDataEdicao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/righteous"
+            android:letterSpacing="0.03"
+            android:text="12/04/2026"
+            android:textAlignment="center"
+            android:textColor="@color/azul"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@id/cardAnotacao"
+            app:layout_constraintTop_toBottomOf="@id/txtTituloAnotacao" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardAnotacao"
+            android:layout_width="375dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:padding="5dp"
+            android:background="@drawable/bg_cardanotacao"
+            app:layout_constraintTop_toBottomOf="@id/txtCriadoEm"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Texto da Anotacao -->
+            <EditText
+                android:id="@+id/txtAnotacao"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/righteous"
+                android:text="Tema: Desafios para a valorização da herança africana no Brasil
+Autor: Sabrina Ayumi Alvez Shimizu
+
+O livro “Nós matamos o cão tinhoso” de Luís Bernardo Honwana retrata a sociedade moçambicana durante a colonização portuguesa. Na obra literária, observa-se uma dinâmica social pautada pela inferiorização dos indivíduos negros, na qual o racismo está enraizado nas interações entre as pessoas, na qualidade de vida e na autoimagem de cada ser. Assim, ao inserir a imagem criada pelo livro no contexto brasileiro de ínfima valorização da herança africana, infere-se que o passado colonial persiste nas estruturas do Brasil, se manifestando a partir do apagamento sistemático da cultura afro-brasileira. Em razão disso, deve-se discutir o papel do Estado no setor escolar e cultural diante desse contexto de silenciamento.
+
+Em um primeiro momento, é necessário entender a relação entre a dinâmica social brasileira e a desvalorização da herança africana. Para fundamentar essa ideia, o filósofo brasileiro Ailton Krenak afirma que, no Brasil, existem dois grupos — a humanidade, formada pela elite econômica, e a subumanidade, a qual tem seus direitos negados e é constituída principalmente pelas populações marginalizadas socialmente, como os povos originários e os negros. Por conseguinte, entende-se que o apagamento da cultura africana é uma extensão do panorama da desigualdade social brasileira, já que essa desvalorização sistemática silencia as vozes de populações que são violentadas e oprimidas há séculos, o que favorece a manutenção dessas pessoas no grupo da subumanidade. Dessa forma, o Estado deve desenvolver medidas que visem valorizar e apoiar artistas e escritores relacionados à herança africana no Brasil.
+
+Sob outra ótica, a compreensão acerca da importância da ancestralidade na formação da autoimagem e da noção de pertencimento de cada indivíduo é imperativa. Para isso, a filósofa brasileira Marilena Chauí defende a ideia de que, enquanto os animais são naturais, os humanos são culturais — ou seja, a cultura que cada pessoa está inserida compõe a essência desse ser. A partir disso, compreende-se que o silenciamento da herança africana nega a uma grande parte do povo brasileiro a sua própria essência, o que constitui uma violência estrutural e resulta numa noção de não pertencimento generalizada e em uma autoimagem defasada. Frente a isso, o Estado deve agir em prol da promoção de manifestações culturais afro-brasileiras.
+
+Em suma, conclui-se que a desvalorização da cultura africana está diretamente relacionada a um processo sistemático de silenciamento de grupos oprimidos e resulta na falta de pertencimento de muitos indivíduos. Portanto, cabe ao Estado, por meio de uma parceria entre o Ministério da Economia (ME) e o Ministério da Educação e da Cultura (MEC), desenvolver manifestações culturais afro-brasileiras nas escolas, como, por exemplo, peças teatrais e festivais de dança, música e arte, assim como investir financeiramente na promoção de artistas e escritores que têm suas carreiras relacionadas à herança africana. Por fim, essas ações serão responsáveis por impedir o perpetuamento da desvalorização da cultura africana no Brasil. "
+                android:textColor="@color/azul"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="@id/cardAnotacao"
+                app:layout_constraintHorizontal_bias="0.466"
+                app:layout_constraintStart_toStartOf="@id/cardAnotacao"
+                tools:layout_editor_absoluteY="5dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>

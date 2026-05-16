@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ModuloHardware"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/fundo_claro">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Header -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_gradientehardwareaula"
+            android:elevation="10dp"
+            android:paddingBottom="25dp"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/volarEscolhaMateria"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:padding="5dp"
+                android:background="@drawable/bg_voltarbranco"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <!-- Voltar Anotacao -->
+                <ImageView
+                    android:id="@+id/imgVoltarH"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    app:tint="#86CE01"
+                    android:src="@drawable/seta_icon"
+                    app:layout_constraintStart_toStartOf="@id/volarEscolhaMateria"
+                    app:layout_constraintEnd_toEndOf="@id/volarEscolhaMateria"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Voltar -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/righteous"
+                android:text="Voltar"
+                android:textColor="@color/branco"
+                android:textSize="22sp"
+                app:layout_constraintStart_toEndOf="@id/volarEscolhaMateria"
+                app:layout_constraintTop_toTopOf="@id/volarEscolhaMateria"/>
+
+            <LinearLayout
+                android:id="@+id/txtInfoHardware"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                app:layout_constraintTop_toBottomOf="@id/volarEscolhaMateria">
+
+                <!-- Logo -->
+                <ImageView
+                    android:id="@+id/imgLayoutLogo"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:contentDescription="logo"
+                    android:src="@drawable/logohardware_icon" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="15dp"
+                    android:orientation="vertical">
+
+                    <!-- Título Hardware -->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="50dp"
+                        android:fontFamily="@font/righteous"
+                        android:text="Hardware"
+                        android:textColor="@color/branco"
+                        android:textSize="48sp" />
+
+                    <!-- Descritivo -->
+                    <TextView
+                        android:layout_width="220dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="Desvende a arquitetura das máquinas de forma acessível."
+                        android:textColor="@color/branco"
+                        android:textSize="15sp"
+                        android:lineSpacingExtra="2dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Card Introdução -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardIntroducaoH"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="20dp"
+            android:background="@drawable/bg_cards"
+            app:layout_constraintTop_toBottomOf="@id/header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Escrito Introdução -->
+            <TextView
+                android:id="@+id/txtTituloModulo1H"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:fontFamily="@font/inter_extrabold"
+                android:text="Introdução"
+                android:textAllCaps="true"
+                android:textAlignment="center"
+                android:textColor="@color/azul"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@id/cardIntroducaoH"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cardIntroducaoH" />
+
+            <!-- Barra -->
+            <View
+                android:id="@+id/barraM1H"
+                android:layout_width="280dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="16dp"
+                android:background="#9FA7BB"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloModulo1H"
+                app:layout_constraintStart_toStartOf="@id/cardIntroducaoH"
+                app:layout_constraintEnd_toEndOf="@id/cardIntroducaoH"/>
+
+            <!-- Imagem Livro -->
+            <ImageView
+                android:id="@+id/imgLivro1M1H"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/aulaconcluida_icon"
+                app:layout_constraintEnd_toStartOf="@+id/txtTituloAula1M1H"
+                app:layout_constraintStart_toStartOf="@id/cardIntroducaoH"
+                app:layout_constraintTop_toBottomOf="@id/barraM1H" />
+
+            <!-- Título Aula -->
+            <TextView
+                android:id="@+id/txtTituloAula1M1H"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/battambang"
+                android:text="Como vai funcionar esse curso?"
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cardIntroducaoH"
+                app:layout_constraintStart_toEndOf="@+id/imgLivro1M1H"
+                app:layout_constraintTop_toBottomOf="@id/barraM1H" />
+
+            <!-- Imagem Livro -->
+            <ImageView
+                android:id="@+id/imgLivro2M1H"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/aulaconcluida_icon"
+                app:layout_constraintEnd_toStartOf="@+id/txtTituloAula2M1H"
+                app:layout_constraintStart_toStartOf="@id/cardIntroducaoH"
+                app:layout_constraintTop_toBottomOf="@id/imgLivro1M1H" />
+
+            <!-- Título Aula -->
+            <TextView
+                android:id="@+id/txtTituloAula2M1H"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/battambang"
+                android:text="Motivação e Mentalidade"
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cardIntroducaoH"
+                app:layout_constraintStart_toEndOf="@+id/imgLivro2M1H"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloAula1M1H" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Card Fundamentos de Hardware -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardFundamentosHardware"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:padding="20dp"
+            android:background="@drawable/bg_cards"
+            app:layout_constraintTop_toBottomOf="@id/cardIntroducaoH"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Título do Módulo -->
+            <TextView
+                android:id="@+id/txtTituloModulo2H"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:fontFamily="@font/inter_extrabold"
+                android:text="Fundamentos"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="@color/azul"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@id/cardFundamentosHardware"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cardFundamentosHardware" />
+
+            <!-- Barra -->
+            <View
+                android:id="@+id/barraM2H"
+                android:layout_width="280dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="16dp"
+                android:background="#9FA7BB"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloModulo2H"
+                app:layout_constraintStart_toStartOf="@id/cardFundamentosHardware"
+                app:layout_constraintEnd_toEndOf="@id/cardFundamentosHardware"/>
+
+            <!-- Imagem Play -->
+            <ImageView
+                android:id="@+id/imgLivro1M2H"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/aulaassistir_icon"
+                app:layout_constraintEnd_toStartOf="@+id/txtTituloAula1M2H"
+                app:layout_constraintStart_toStartOf="@id/cardFundamentosHardware"
+                app:layout_constraintTop_toBottomOf="@id/barraM2H" />
+
+            <!-- Título Aula -->
+            <TextView
+                android:id="@+id/txtTituloAula1M2H"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/battambang"
+                android:text="Introdução ao Hardware"
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cardFundamentosHardware"
+                app:layout_constraintStart_toEndOf="@+id/imgLivro1M2H"
+                app:layout_constraintTop_toBottomOf="@id/barraM2H" />
+
+            <!-- Imagem Livro -->
+            <ImageView
+                android:id="@+id/imgLivro2M2H"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/aulaassistir_icon"
+                app:layout_constraintEnd_toStartOf="@+id/txtTituloAula2M2H"
+                app:layout_constraintStart_toStartOf="@id/cardFundamentosHardware"
+                app:layout_constraintTop_toBottomOf="@id/imgLivro1M2H" />
+
+            <!-- Título Aula -->
+            <TextView
+                android:id="@+id/txtTituloAula2M2H"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/battambang"
+                android:text="Evolução dos Computadores"
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cardFundamentosHardware"
+                app:layout_constraintStart_toEndOf="@+id/imgLivro2M2H"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloAula1M2H" />
+
+            <!-- Imagem Livro -->
+            <ImageView
+                android:id="@+id/imgLivro3M2H"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/aulaassistir_icon"
+                app:layout_constraintEnd_toStartOf="@+id/txtTituloAula3M2H"
+                app:layout_constraintStart_toStartOf="@id/cardFundamentosHardware"
+                app:layout_constraintTop_toBottomOf="@id/imgLivro2M2H" />
+
+            <!-- Título Aula -->
+            <TextView
+                android:id="@+id/txtTituloAula3M2H"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/battambang"
+                android:text="Arquitetura Básica (Von Neumann)"
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cardFundamentosHardware"
+                app:layout_constraintStart_toEndOf="@+id/imgLivro3M2H"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloAula2M2H" />
+
+            <!-- Imagem Livro -->
+            <ImageView
+                android:id="@+id/imgLivro4M2H"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/aulaassistir_icon"
+                app:layout_constraintEnd_toStartOf="@+id/txtTituloAula4M2H"
+                app:layout_constraintStart_toStartOf="@id/cardFundamentosHardware"
+                app:layout_constraintTop_toBottomOf="@id/imgLivro3M2H" />
+
+            <!-- Título Aula -->
+            <TextView
+                android:id="@+id/txtTituloAula4M2H"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/battambang"
+                android:text="Tipos de Computadores"
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cardFundamentosHardware"
+                app:layout_constraintStart_toEndOf="@+id/imgLivro4M2H"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloAula3M2H" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Card Fundamentos de Hardware -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardComponentesInternos"
+            android:layout_width="340dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:padding="20dp"
+            android:background="@drawable/bg_cards"
+            app:layout_constraintTop_toBottomOf="@id/cardFundamentosHardware"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Título do Módulo -->
+            <TextView
+                android:id="@+id/txtTituloModulo3H"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-5dp"
+                android:fontFamily="@font/inter_extrabold"
+                android:text="Componentes"
+                android:textAlignment="center"
+                android:textColor="@color/azul"
+                android:textSize="20sp"
+                android:textAllCaps="true"
+                app:layout_constraintEnd_toEndOf="@id/cardComponentesInternos"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cardComponentesInternos" />
+
+            <!-- Barra -->
+            <View
+                android:id="@+id/barraM3H"
+                android:layout_width="280dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="16dp"
+                android:background="#9FA7BB"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloModulo3H"
+                app:layout_constraintStart_toStartOf="@id/cardComponentesInternos"
+                app:layout_constraintEnd_toEndOf="@id/cardComponentesInternos"/>
+
+            <!-- Imagem Livro -->
+            <ImageView
+                android:id="@+id/imgLivro1M3H"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/aulaassistir_icon"
+                app:layout_constraintEnd_toStartOf="@+id/txtTituloAula1M3H"
+                app:layout_constraintStart_toStartOf="@id/cardComponentesInternos"
+                app:layout_constraintTop_toBottomOf="@id/barraM3H" />
+
+            <!-- Título Aula -->
+            <TextView
+                android:id="@+id/txtTituloAula1M3H"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/battambang"
+                android:text="Placa-Mãe"
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cardComponentesInternos"
+                app:layout_constraintStart_toEndOf="@+id/imgLivro1M3H"
+                app:layout_constraintTop_toBottomOf="@id/barraM3H" />
+
+            <!-- Imagem Livro -->
+            <ImageView
+                android:id="@+id/imgLivro2M3H"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/aulaassistir_icon"
+                app:layout_constraintEnd_toStartOf="@+id/txtTituloAula2M3H"
+                app:layout_constraintStart_toStartOf="@id/cardComponentesInternos"
+                app:layout_constraintTop_toBottomOf="@id/imgLivro1M3H" />
+
+            <!-- Título Aula -->
+            <TextView
+                android:id="@+id/txtTituloAula2M3H"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/battambang"
+                android:text="Processador (CPU)"
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cardComponentesInternos"
+                app:layout_constraintStart_toEndOf="@+id/imgLivro2M3H"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloAula1M3H" />
+
+            <!-- Imagem Livro -->
+            <ImageView
+                android:id="@+id/imgLivro3M3H"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/aulaassistir_icon"
+                app:layout_constraintEnd_toStartOf="@+id/txtTituloAula3M3H"
+                app:layout_constraintStart_toStartOf="@id/cardComponentesInternos"
+                app:layout_constraintTop_toBottomOf="@id/imgLivro2M3H" />
+
+            <!-- Título Aula -->
+            <TextView
+                android:id="@+id/txtTituloAula3M3H"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/battambang"
+                android:text="Memória RAM"
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cardComponentesInternos"
+                app:layout_constraintStart_toEndOf="@+id/imgLivro3M3H"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloAula2M3H" />
+
+            <!-- Imagem Livro -->
+            <ImageView
+                android:id="@+id/imgLivro4M3H"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/aulaassistir_icon"
+                app:layout_constraintEnd_toStartOf="@+id/txtTituloAula4M3H"
+                app:layout_constraintStart_toStartOf="@id/cardComponentesInternos"
+                app:layout_constraintTop_toBottomOf="@id/imgLivro3M3H" />
+
+            <!-- Título Aula -->
+            <TextView
+                android:id="@+id/txtTituloAula4M3H"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/battambang"
+                android:text="Armazenamento (HD e SSD)"
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cardComponentesInternos"
+                app:layout_constraintStart_toEndOf="@+id/imgLivro4M3H"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloAula3M3H" />
+
+            <!-- Imagem Livro -->
+            <ImageView
+                android:id="@+id/imgLivro5M3H"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/aulaassistir_icon"
+                app:layout_constraintEnd_toStartOf="@+id/txtTituloAula5M3H"
+                app:layout_constraintStart_toStartOf="@id/cardComponentesInternos"
+                app:layout_constraintTop_toBottomOf="@id/imgLivro4M3H" />
+
+            <!-- Título Aula -->
+            <TextView
+                android:id="@+id/txtTituloAula5M3H"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/battambang"
+                android:text="Fonte de Alimentação (PSU)"
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cardComponentesInternos"
+                app:layout_constraintStart_toEndOf="@+id/imgLivro5M3H"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloAula4M3H" />
+
+            <!-- Imagem Livro -->
+            <ImageView
+                android:id="@+id/imgLivro6M3H"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/aulaassistir_icon"
+                app:layout_constraintEnd_toStartOf="@+id/txtTituloAula6M3H"
+                app:layout_constraintStart_toStartOf="@id/cardComponentesInternos"
+                app:layout_constraintTop_toBottomOf="@id/imgLivro5M3H" />
+
+            <!-- Título Aula -->
+            <TextView
+                android:id="@+id/txtTituloAula6M3H"
+                android:layout_width="240dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/battambang"
+                android:text="Placa de vídeo (GPU)"
+                android:textColor="@color/azul"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="@id/cardComponentesInternos"
+                app:layout_constraintStart_toEndOf="@+id/imgLivro6M3H"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloAula5M3H" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/espaco_nav_bar"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            app:layout_constraintTop_toBottomOf="@id/cardComponentesInternos" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

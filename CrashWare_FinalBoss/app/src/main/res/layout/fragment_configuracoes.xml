@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@color/fundo_claro">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Header -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:background="@color/branco"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/addAnotacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:padding="5dp"
+                android:background="@drawable/bg_voltar"
+                app:layout_constraintTop_toTopOf="@id/header"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <!-- Adicionar Anotacao -->
+                <ImageView
+                    android:id="@+id/imgVoltarNovaAnotacao"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/seta_icon"
+                    app:layout_constraintStart_toStartOf="@id/addAnotacao"
+                    app:layout_constraintTop_toTopOf="@id/addAnotacao"
+                    />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/txtVoltar"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/righteous"
+                android:text="Voltar ao perfil"
+                android:textColor="@color/azul"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@id/addAnotacao"
+                app:layout_constraintTop_toTopOf="@id/addAnotacao" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Titulo Configuração -->
+        <TextView
+            android:id="@+id/txtConfiguracao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/righteous"
+            android:text="CONFIGURAÇÕES"
+            android:textAllCaps="true"
+            android:textColor="@color/azul"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header" />
+
+        <ImageView
+            android:id="@+id/imgConfig"
+            android:layout_width="270dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="-16dp"
+            android:src="@drawable/configperfil_icon"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txtConfiguracao" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardNotificacoes"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="15dp"
+            android:background="@drawable/bg_cardefeitovidroconquistas"
+            app:layout_constraintTop_toBottomOf="@id/imgConfig"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/imgNotifiPerfil"
+                android:layout_width="310dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="35dp"
+                android:src="@drawable/notifiperfil_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cardNotificacoes" />
+
+            <TextView
+                android:id="@+id/txtNotificacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="36dp"
+                android:fontFamily="@font/righteous"
+                android:text="Notificações"
+                android:textAllCaps="true"
+                android:textColor="@color/azul"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/imgNotifiPerfil"
+                app:layout_constraintTop_toTopOf="@id/imgNotifiPerfil" />
+
+            <TextView
+                android:id="@+id/txtAtivarTodasNotifi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/inter_extrabold"
+                android:text="Ativar todas as notificações"
+                android:textAllCaps="true"
+                android:textColor="@color/azul"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="@id/imgNotifiPerfil"
+                app:layout_constraintTop_toBottomOf="@id/imgNotifiPerfil" />
+
+            <TextView
+                android:id="@+id/txtLembreteDiario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/inter_extrabold"
+                android:text="Lembrete diário"
+                android:textAllCaps="true"
+                android:textColor="@color/azul"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/txtAtivarTodasNotifi"
+                app:layout_constraintTop_toBottomOf="@id/txtAtivarTodasNotifi" />
+
+            <TextView
+                android:id="@+id/txtNotificacoes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/inter_extrabold"
+                android:text="Notificações"
+                android:textAllCaps="true"
+                android:textColor="@color/azul"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/txtLembreteDiario"
+                app:layout_constraintTop_toBottomOf="@id/txtLembreteDiario" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardAparencia"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="15dp"
+            android:background="@drawable/bg_cardefeitovidroconquistas"
+            app:layout_constraintTop_toBottomOf="@id/cardNotificacoes"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/imgAparenPerfil"
+                android:layout_width="310dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="35dp"
+                android:src="@drawable/aparenperfil_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cardAparencia" />
+
+            <TextView
+                android:id="@+id/txtAparencia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="38dp"
+                android:fontFamily="@font/righteous"
+                android:text="Aparência"
+                android:textAllCaps="true"
+                android:textColor="@color/azul"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/imgAparenPerfil"
+                app:layout_constraintTop_toTopOf="@id/imgAparenPerfil" />
+
+            <TextView
+                android:id="@+id/txtTemasPadrao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/righteous"
+                android:text="Temas padrão"
+                android:textAllCaps="true"
+                android:textColor="@color/azul"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/imgAparenPerfil"
+                app:layout_constraintTop_toBottomOf="@id/imgAparenPerfil" />
+
+            <TextView
+                android:id="@+id/txtSistema"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/inter_extrabold"
+                android:text="Sistema"
+                android:textAllCaps="true"
+                android:textColor="@color/azul"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="@id/txtTemasPadrao"
+                app:layout_constraintTop_toBottomOf="@id/txtTemasPadrao" />
+
+            <TextView
+                android:id="@+id/txtModoClaro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/inter_extrabold"
+                android:text="Modo Claro"
+                android:textAllCaps="true"
+                android:textColor="@color/azul"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="@id/imgAparenPerfil"
+                app:layout_constraintTop_toBottomOf="@id/txtTemasPadrao" />
+
+            <TextView
+                android:id="@+id/txtModoEscuro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/inter_extrabold"
+                android:text="Modo Escuro"
+                android:textAllCaps="true"
+                android:textColor="@color/azul"
+                android:textSize="13sp"
+                app:layout_constraintStart_toEndOf="@id/txtSistema"
+                app:layout_constraintEnd_toStartOf="@id/txtModoClaro"
+                app:layout_constraintTop_toBottomOf="@id/txtTemasPadrao" />
+
+            <ImageView
+                android:id="@+id/imgTemaSistema"
+                android:layout_width="52dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="56dp"
+                android:src="@drawable/sistema_icon"
+                app:layout_constraintStart_toStartOf="@id/txtSistema"
+                app:layout_constraintEnd_toEndOf="@id/txtSistema"
+                app:layout_constraintTop_toBottomOf="@id/txtSistema" />
+
+            <ImageView
+                android:id="@+id/imgModoEscuro"
+                android:layout_width="52dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="56dp"
+                android:src="@drawable/modoescuro_icon"
+                app:layout_constraintStart_toEndOf="@id/imgTemaSistema"
+                app:layout_constraintEnd_toStartOf="@id/imgModoClaro"
+                app:layout_constraintTop_toBottomOf="@id/txtModoEscuro" />
+
+            <ImageView
+                android:id="@+id/imgModoClaro"
+                android:layout_width="52dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="56dp"
+                android:src="@drawable/modoclaro_icon"
+
+                app:layout_constraintEnd_toEndOf="@id/imgLeitura"
+                app:layout_constraintTop_toBottomOf="@id/txtModoClaro" />
+
+            <TextView
+                android:id="@+id/txtTemasDesbloqueados"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/righteous"
+                android:text="Temas Desbloqueados"
+                android:textAllCaps="true"
+                android:textColor="@color/azul"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/txtTemasPadrao"
+                app:layout_constraintTop_toBottomOf="@id/imgTemaSistema" />
+
+            <TextView
+                android:id="@+id/txtMeiaNoite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/inter_extrabold"
+                android:text="Meia Noite"
+                android:textAllCaps="true"
+                android:textColor="@color/azul"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="@id/txtTemasDesbloqueados"
+                app:layout_constraintTop_toBottomOf="@id/txtTemasDesbloqueados" />
+
+            <TextView
+                android:id="@+id/txtGelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/inter_extrabold"
+                android:text="Gelo"
+                android:textAllCaps="true"
+                android:textColor="@color/azul"
+                android:textSize="13sp"
+                app:layout_constraintStart_toEndOf="@id/txtMeiaNoite"
+                app:layout_constraintEnd_toStartOf="@id/txtLeitura"
+                app:layout_constraintTop_toBottomOf="@id/txtTemasDesbloqueados" />
+
+            <TextView
+                android:id="@+id/txtLeitura"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/inter_extrabold"
+                android:text="Leitura"
+                android:textAllCaps="true"
+                android:textColor="@color/azul"
+                android:textSize="13sp"
+                app:layout_constraintEnd_toEndOf="@id/txtModoClaro"
+                app:layout_constraintTop_toBottomOf="@id/txtTemasDesbloqueados" />
+
+            <ImageView
+                android:id="@+id/imgMeiaNoite"
+                android:layout_width="52dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="56dp"
+                android:src="@drawable/meianoite_icon"
+                app:layout_constraintStart_toStartOf="@id/txtMeiaNoite"
+                app:layout_constraintEnd_toEndOf="@id/txtMeiaNoite"
+                app:layout_constraintTop_toBottomOf="@id/txtMeiaNoite" />
+
+            <ImageView
+                android:id="@+id/imgGelo"
+                android:layout_width="52dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="56dp"
+                android:src="@drawable/gelo_icon"
+                app:layout_constraintStart_toEndOf="@id/imgMeiaNoite"
+                app:layout_constraintEnd_toStartOf="@id/imgLeitura"
+                app:layout_constraintTop_toBottomOf="@id/txtGelo" />
+
+            <ImageView
+                android:id="@+id/imgLeitura"
+                android:layout_width="52dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="56dp"
+                android:src="@drawable/leitura_icon"
+                app:layout_constraintStart_toStartOf="@id/txtLeitura"
+                app:layout_constraintEnd_toEndOf="@id/txtLeitura"
+                app:layout_constraintTop_toBottomOf="@id/txtLeitura" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardConfigUsuario"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="15dp"
+            android:background="@drawable/bg_cardefeitovidroconquistas"
+            app:layout_constraintTop_toBottomOf="@id/cardAparencia"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/imgConfigUserPerfil"
+                android:layout_width="310dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="35dp"
+                android:src="@drawable/configuserperfil_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cardConfigUsuario" />
+
+            <TextView
+                android:id="@+id/txtConfigUserPerfil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="38dp"
+                android:fontFamily="@font/righteous"
+                android:text="Configurações de usuário"
+                android:textAllCaps="true"
+                android:textColor="@color/azul"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/imgConfigUserPerfil"
+                app:layout_constraintTop_toTopOf="@id/imgConfigUserPerfil" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardConfigUsuarioAlterarDados"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/bg_card"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgConfigUserPerfil">
+
+                <ImageView
+                    android:id="@+id/imgConfigUserPerfilUsuario"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/userperfil_icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/cardConfigUsuarioAlterarDados" />
+
+                <TextView
+                    android:id="@+id/txtAlterarDadosPerfil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/righteous"
+                    android:text="Alterar dados do perfil"
+                    android:textAllCaps="true"
+                    android:textColor="@color/azul"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/imgConfigUserPerfilUsuario"
+                    app:layout_constraintTop_toTopOf="@id/imgConfigUserPerfilUsuario" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardConfigUsuarioSairConta"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/bg_card"
+                app:layout_constraintTop_toBottomOf="@id/cardConfigUsuarioAlterarDados"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:id="@+id/imgConfigUserSairConta"
+                    android:layout_width="30dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/sairconta_icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/cardConfigUsuarioSairConta" />
+
+                <TextView
+                    android:id="@+id/txtSairConta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/righteous"
+                    android:text="Sair da CONTA"
+                    android:textAllCaps="true"
+                    android:textColor="@color/azul"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/imgConfigUserSairConta"
+                    app:layout_constraintTop_toTopOf="@id/imgConfigUserSairConta" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardConfigUsuarioExluirConta"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/bg_cardimportanteperfil"
+                app:layout_constraintTop_toBottomOf="@id/cardConfigUsuarioSairConta"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:id="@+id/imgConfigUserExcluirConta"
+                    android:layout_width="30dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/excluirconta_icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/cardConfigUsuarioExluirConta" />
+
+                <TextView
+                    android:id="@+id/txtExcluirConta"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/righteous"
+                    android:text="Excluir conta"
+                    android:textAllCaps="true"
+                    android:textColor="#C20508"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/imgConfigUserExcluirConta"
+                    app:layout_constraintTop_toTopOf="@id/imgConfigUserExcluirConta" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardPrivacidadeSeguranca"
+            android:layout_width="360dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="15dp"
+            android:background="@drawable/bg_cardefeitovidroconquistas"
+            app:layout_constraintTop_toBottomOf="@id/cardConfigUsuario"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/imgPrivacidadeSeguranca"
+                android:layout_width="310dp"
+                android:layout_marginTop="5dp"
+                android:layout_height="35dp"
+                android:src="@drawable/configuserperfil_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cardPrivacidadeSeguranca" />
+
+            <TextView
+                android:id="@+id/txtPrivacidadeSeguranca"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_marginStart="38dp"
+                android:fontFamily="@font/righteous"
+                android:text="Privacidade e Segurança"
+                android:textAllCaps="true"
+                android:textColor="@color/azul"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/imgPrivacidadeSeguranca"
+                app:layout_constraintTop_toTopOf="@id/imgPrivacidadeSeguranca" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardPrivacidadeSegurancaSobre"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/bg_card"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/imgPrivacidadeSeguranca">
+
+                <ImageView
+                    android:id="@+id/imgSobre"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/sobre_icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/cardPrivacidadeSegurancaSobre" />
+
+                <TextView
+                    android:id="@+id/txtSobre"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/righteous"
+                    android:text="Sobre"
+                    android:textAllCaps="true"
+                    android:textColor="@color/azul"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/imgSobre"
+                    app:layout_constraintTop_toTopOf="@id/imgSobre" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardPrivacidadeSegurancaTermosServico"
+                android:layout_width="320dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@drawable/bg_card"
+                app:layout_constraintTop_toBottomOf="@id/cardPrivacidadeSegurancaSobre"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ImageView
+                    android:id="@+id/imgTermosServico"
+                    android:layout_width="28dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/termosservico_icon"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/cardPrivacidadeSegurancaTermosServico" />
+
+                <TextView
+                    android:id="@+id/txtTermosServico"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginStart="10dp"
+                    android:fontFamily="@font/righteous"
+                    android:text="Termos de Serviço"
+                    android:textAllCaps="true"
+                    android:textColor="@color/azul"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@id/imgTermosServico"
+                    app:layout_constraintTop_toTopOf="@id/imgTermosServico" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/espaco_nav_bar"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            app:layout_constraintTop_toBottomOf="@id/cardPrivacidadeSeguranca" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

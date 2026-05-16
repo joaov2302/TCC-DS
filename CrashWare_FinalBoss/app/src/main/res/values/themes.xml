@@ -1,0 +1,53 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.CrashWare" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/branco</item>
+        <item name="colorOnPrimary">@color/verde</item>
+
+        <item name="colorSecondary">@color/fundo_claro</item>
+        <item name="colorOnSecondary">@color/preto</item>
+
+        <item name="android:windowBackground">@color/fundo_claro</item>
+
+        <item name="colorSurface">@color/branco</item>
+        <item name="colorOnSurface">@color/texto_modoclaro</item>
+
+        <item name="colorPrimarySurface">#20FFFFFF</item>
+        <item name="colorOnPrimarySurface">#500F172A</item>
+
+        <item name="colorSecondaryContainer">#303F4552</item>
+    </style>
+
+    <style name="Theme.CrashWare" parent="Base.Theme.CrashWare" />
+
+    <style name="CircleImage">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="Imagemhome" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">15%</item>
+    </style>
+
+    <style name="Banner" parent="">
+        <item name="cornerFamily">rounded</item>
+    </style>
+
+    <color name="bg_vidro_transparente">#FFFFFF</color>
+
+    <style name="Theme.CrashWare.Gelo" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">#00BCD4</item>
+        <item name="android:colorBackground">#E0F7FA</item>
+    </style>
+
+    <style name="Theme.CrashWare.MeiaNoite" parent="Theme.Material3.Dark.NoActionBar">
+        <item name="colorPrimary">#3F51B5</item>
+        <item name="android:colorBackground">#0D0D0D</item>
+    </style>
+
+    <style name="Theme.CrashWare.Leitura" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">#FF9800</item>
+        <item name="android:colorBackground">#FFF3E0</item>
+    </style>
+
+</resources>

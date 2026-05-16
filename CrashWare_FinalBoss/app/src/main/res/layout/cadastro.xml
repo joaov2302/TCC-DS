@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main_cadastro"
+    android:fillViewport="true"
+    android:background="?attr/android:windowBackground">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Header -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/bg_gradiendtelasiniciais"
+            android:elevation="10dp"
+            app:layout_constraintEnd_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Logo -->
+            <ImageView
+                android:id="@+id/imgLayoutLogo"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="logo"
+                android:src="@drawable/logo_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/header"
+                app:layout_constraintTop_toTopOf="@id/header" />
+
+            <!-- Nome do App -->
+            <TextView
+                android:id="@+id/txtNomeApp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/orbitron_extrabold"
+                android:text="CRASHWARE"
+                android:textColor="@color/branco"
+                android:textSize="34sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imgLayoutLogo"
+                app:layout_constraintTop_toTopOf="@id/header" />
+
+            <!-- Slogan -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="22dp"
+                android:layout_marginEnd="19dp"
+                android:layout_marginBottom="31dp"
+                android:fontFamily="@font/righteous"
+                android:text="A TECNOLOGIA NÃO É MÁGICA, É LÓGICA. "
+                android:textColor="@color/branco"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imgLayoutLogo"
+                app:layout_constraintTop_toBottomOf="@id/txtNomeApp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cardEfeitoVidro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/bg_cardefeitovidro"
+            android:elevation="10dp"
+            android:paddingBottom="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header">
+
+            <!-- Título -->
+            <TextView
+                android:id="@+id/txtTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="125dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="125dp"
+                android:fontFamily="@font/righteous"
+                android:text="CADASTRE-SE"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/cardEfeitoVidro"
+                app:layout_constraintStart_toStartOf="@id/cardEfeitoVidro"
+                app:layout_constraintTop_toTopOf="@+id/cardEfeitoVidro" />
+
+            <!-- Titulo Nome -->
+            <TextView
+                android:id="@+id/txtTituloNome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/righteous"
+                android:text="NOME"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/txtNomeCad"
+                app:layout_constraintTop_toBottomOf="@+id/txtTitulo"/>
+
+            <!-- Campo Nome -->
+            <EditText
+                android:id="@+id/txtNomeCad"
+                android:layout_width="310dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_edittext_borda"
+                android:fontFamily="@font/pt_sans_caption_bold"
+                android:hint="Nome ou apelido"
+                android:textColor="#000000"
+                android:textColorHint="#500F172A"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloNome" />
+
+            <!-- Titulo Email -->
+            <TextView
+                android:id="@+id/txtTituloEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/righteous"
+                android:text="E-MAIL"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/txtEmailCad"
+                app:layout_constraintTop_toBottomOf="@+id/txtNomeCad"/>
+
+            <!-- Campo Email -->
+            <EditText
+                android:id="@+id/txtEmailCad"
+                android:layout_width="310dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_edittext_borda"
+                android:fontFamily="@font/pt_sans_caption_bold"
+                android:hint="seu@email.com"
+                android:textColor="#000000"
+                android:textColorHint="#500F172A"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloEmail" />
+
+            <!-- Titulo Senha -->
+            <TextView
+                android:id="@+id/txtTituloSenha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/righteous"
+                android:text="SENHA"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/txtSenhaCad"
+                app:layout_constraintTop_toBottomOf="@+id/txtEmailCad"/>
+
+            <!-- Campo Senha -->
+            <EditText
+                android:id="@+id/txtSenhaCad"
+                android:layout_width="310dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_edittext_borda"
+                android:fontFamily="@font/righteous"
+                android:hint="********"
+                android:inputType="textPassword"
+                android:textColor="#000000"
+                android:textColorHint="#500F172A"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloSenha" />
+
+            <!-- Ícone de mostrar senha -->
+            <ImageView
+                android:id="@+id/imgOlhoSenha"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="12dp"
+                android:elevation="2dp"
+                android:src="@drawable/olho_icon"
+                android:translationX="-4dp"
+                app:tint="#500F172A"
+                app:layout_constraintBottom_toBottomOf="@id/txtSenhaCad"
+                app:layout_constraintEnd_toEndOf="@id/txtSenhaCad"
+                app:layout_constraintTop_toTopOf="@id/txtSenhaCad" />
+
+            <!-- Titulo MinSenha -->
+            <TextView
+                android:id="@+id/txtMinSenha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:fontFamily="@font/inter_bold"
+                android:text="Mínimo de 8 caracteres"
+                android:textColor="?attr/colorOnPrimarySurface"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="@id/txtSenhaCad"
+                app:layout_constraintTop_toBottomOf="@+id/txtSenhaCad"/>
+
+            <!-- Titulo Confirmar Senha -->
+            <TextView
+                android:id="@+id/txtTituloConfirmarSenha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/righteous"
+                android:text="CONFIRMAR SENHA"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/txtConfirmarSenhaCad"
+                app:layout_constraintTop_toBottomOf="@+id/txtMinSenha"/>
+
+            <!-- Confirmar Senha -->
+            <EditText
+                android:id="@+id/txtConfirmarSenhaCad"
+                android:layout_width="310dp"
+                android:layout_height="48dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="2dp"
+                android:background="@drawable/bg_edittext_borda"
+                android:fontFamily="@font/pt_sans_caption_bold"
+                android:hint="Confirmar senha"
+                android:inputType="textPassword"
+                android:textColor="#000000"
+                android:textColorHint="#500F172A"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtTituloConfirmarSenha" />
+
+            <!-- Ícone de mostrar senha -->
+            <ImageView
+                android:id="@+id/imgOlhoSenhaConfirmar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="12dp"
+                android:elevation="2dp"
+                android:src="@drawable/olho_icon"
+                android:translationX="-4dp"
+                app:tint="#500F172A"
+                app:layout_constraintBottom_toBottomOf="@id/txtConfirmarSenhaCad"
+                app:layout_constraintEnd_toEndOf="@id/txtConfirmarSenhaCad"
+                app:layout_constraintTop_toTopOf="@id/txtConfirmarSenhaCad" />
+
+            <!-- Descricao Termos -->
+            <TextView
+                android:id="@+id/txtDescricaoTermos"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="36dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/inter_bold"
+                android:lineSpacingExtra="-5sp"
+                android:text="Ao criar uma conta, você concorda com nossos "
+                android:textAlignment="center"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toTopOf="@+id/txtTermos"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtConfirmarSenhaCad" />
+
+            <!-- Titulo Confirmar Senha -->
+            <TextView
+                android:id="@+id/txtTermos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/righteous"
+                android:text="Termos de Uso"
+                android:textColor="#126487"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtDescricaoTermos"/>
+
+            <!-- Botão Criar Conta -->
+            <Button
+                android:id="@+id/btnCriarConta"
+                android:layout_width="260dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="12dp"
+                android:background="@drawable/bg_botaosborda"
+                android:fontFamily="@font/righteous"
+                android:text="CRIAR CONTA"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:backgroundTint="@null"
+                app:backgroundTintMode="add"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtTermos" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Já tem uma conta? -->
+        <TextView
+            android:id="@+id/txtConta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="5dp"
+            android:fontFamily="@font/righteous"
+            android:text="Já tem uma conta?"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toStartOf="@id/txtEntrarCad"
+            app:layout_constraintTop_toBottomOf="@+id/cardEfeitoVidro" />
+
+        <TextView
+            android:id="@+id/txtEntrarCad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/righteous"
+            android:text="Entrar"
+            android:textAllCaps="true"
+            android:layout_marginEnd="110dp"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/txtConta" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:layout_marginTop="-2dp"
+            android:background="?attr/colorOnSurface"
+            app:layout_constraintEnd_toEndOf="@id/txtEntrarCad"
+            app:layout_constraintStart_toStartOf="@id/txtEntrarCad"
+            app:layout_constraintTop_toBottomOf="@id/txtEntrarCad" />
+
+        <View
+            android:id="@+id/espaco_nav_bar"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toBottomOf="@id/txtEntrarCad" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
