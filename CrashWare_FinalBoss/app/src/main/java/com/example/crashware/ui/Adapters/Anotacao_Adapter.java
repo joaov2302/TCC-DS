@@ -1,4 +1,4 @@
-package com.example.crashware.ui.anotacoes;
+package com.example.crashware.ui.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.crashware.R;
+import com.example.crashware.ui.Models.Anotacao;
 
 import java.util.ArrayList;
 
@@ -54,9 +55,12 @@ public class Anotacao_Adapter extends RecyclerView.Adapter<Anotacao_Adapter.View
         //Pega a posição da anotação na arraylist
         Anotacao anotacao = lista.get(position);
 
-        //altera as informações para aparecer a respectiva
+        //altera as informações para aparecer a respectiva anotação
         holder.txtTitulo.setText(anotacao.getTitulo());
         holder.txtConteudo.setText(anotacao.getConteudo());
+
+        // Data exibida
+        holder.txtData.setText(anotacao.getDataCriacao());
 
         //quando clica, seleciona a anotação correta baseada na ordem da lista
         holder.itemView.setOnClickListener(v -> {
@@ -79,6 +83,7 @@ public class Anotacao_Adapter extends RecyclerView.Adapter<Anotacao_Adapter.View
 
         TextView txtTitulo;
         TextView txtConteudo;
+        TextView txtData;
 
         public ViewHolder(@NonNull View itemView)
         {
@@ -88,6 +93,7 @@ public class Anotacao_Adapter extends RecyclerView.Adapter<Anotacao_Adapter.View
 
             txtTitulo = itemView.findViewById(R.id.txtTitulo);
             txtConteudo = itemView.findViewById(R.id.txtConteudo);
+            txtData = itemView.findViewById(R.id.txtData);
         }
     }
 }

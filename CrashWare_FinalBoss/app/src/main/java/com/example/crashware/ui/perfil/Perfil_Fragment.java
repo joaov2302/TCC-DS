@@ -12,13 +12,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.crashware.ui.sistemas.XP_Manager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.crashware.R;
+import com.example.crashware.ui.api.Auth;
 import com.example.crashware.ui.api.User;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,11 +34,15 @@ public class Perfil_Fragment extends Fragment {
     private SharedPreferences.OnSharedPreferenceChangeListener listenerFoto;
 
     private SharedPreferences.OnSharedPreferenceChangeListener listenerBanner;
-    TextView txtNomePerfil, txtQuantXP, txtPatente, txtVerTodasConquistas;
+    TextView txtNomePerfil, txtQuantXP, txtPatente, txtVerTodasConquistas, txtNivelPerfil, txtQuantGemas;
 
     ImageView imgConfigPerfil;
 
     ShapeableImageView imgFotoPerfil, imgBanner;
+
+    ProgressBar BarraProgressoPerfil;
+
+    XP_Manager XP_Manager;
 
     private ActivityResultLauncher<String[]> escolherFoto;
 
@@ -82,7 +89,10 @@ public class Perfil_Fragment extends Fragment {
         //SharedPreferences
         prefs = requireContext().getSharedPreferences("CrashWare", Context.MODE_PRIVATE);
 
-        //Crrego a foto assim que a tela foi incializada
+        //Inicializando classe de XP
+        XP_Manager = new XP_Manager(requireContext());
+
+        //Carrego a foto assim que a tela foi incializada
         Foto();
 
 
@@ -120,17 +130,26 @@ public class Perfil_Fragment extends Fragment {
         //Inicia o Layout no Código
         txtNomePerfil         = view.findViewById(R.id.txtNomePerfil        );
         txtPatente            = view.findViewById(R.id.txtPatente           );
-        txtQuantXP            = view.findViewById(R.id.txtQuantXP           );
+        txtQuantGemas         = view.findViewById(R.id.txtQuantGemas        );
+        txtQuantXP            = view.findViewById(R.id.txtXPPerfil          );
         txtVerTodasConquistas = view.findViewById(R.id.txtVerTodasConquistas);
         imgFotoPerfil         = view.findViewById(R.id.imgFotoPerfil        );
         imgConfigPerfil       = view.findViewById(R.id.imgConfigPerfil      );
         imgBanner             = view.findViewById(R.id.imgBanner            );
-        imgFotoPerfil         = view.findViewById(R.id.imgFotoPerfil        );
-        imgBanner             = view.findViewById(R.id.imgBanner            );
+        txtNivelPerfil        = view.findViewById(R.id.txtNivelPerfil       );
+        BarraProgressoPerfil = view.findViewById(R.id.barraProgressoPerfil  );
 
 
         //Pego os dados no SharedPreferences
         String Nome = prefs.getString("nome", null);
+        String Patente = prefs.getString("patente", "Iniciante");
+        Integer Moedas = prefs.getInt("moedas", 0);
+        Float xp = prefs.getFloat("xp",0);
+        int Nivel = XP_Manager.getNivel();
+        float Xp = XP_Manager.getXp();
+
+        //função que atualiza o progresso do xp
+        atualizarXp();
 
 
         // Listener da foto
@@ -160,13 +179,15 @@ public class Perfil_Fragment extends Fragment {
 
         prefs.registerOnSharedPreferenceChangeListener(listenerFoto);
 
-
-
+        //Atualizando as informações do Usuário
         txtNomePerfil.setText(Nome);
-//        txtPatente.setText(Patente);
+        txtPatente.setText(Patente);
+        txtNivelPerfil.setText("Nível " + String.valueOf(Nivel));
+        txtQuantGemas.setText(String.valueOf(Moedas));
+        txtQuantXP.setText(String.valueOf(xp));
+
 //        txtQuantDiasSeguidos.setText(Ofensiva);
-//        txtQuantXP.setText(XP);
-//        txtQuantGemas.setText(Gemas);
+
 
 
 
@@ -229,51 +250,89 @@ public class Perfil_Fragment extends Fragment {
 
     }
 
-//    @Override
-//    public void onResume()
-//    {
-//        super.onResume();
-//
-//        Foto();
-//    }
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        atualizarXp();
+
+    }
+
+    private void atualizarXp()
+    {
+        int nivel = XP_Manager.getNivel();
+
+        int xp = (int) XP_Manager.getXp();
+
+        txtNivelPerfil.setText("Nível " + nivel);
+
+        txtQuantXP.setText(xp + "/" + BarraProgressoPerfil.getMax() + " XP");
+
+        BarraProgressoPerfil.setProgress(xp);
+    }
 
     private void Foto(){
-        User.Perfil(requireContext(), prefs, new User.PerfilCallback()
-        {
+
+        //Verifico o token
+        Auth.verificarToken(requireActivity(), prefs, true, new Auth.AuthCallback() {
+
             @Override
-            public void sucesso(User.PerfilResponse usuario) {
+            public void onSuccess() {
+                //Se token for valido executo a requisição
+                User.Perfil(requireContext(), prefs, new User.PerfilCallback()
+                {
+                    @Override
+                    public void sucesso(User.PerfilResponse usuario) {
 
-                String email = usuario.email;
+                        String nome= usuario.nome;
+                        String patente = usuario.patente;
+                        String foto = usuario.foto;
+                        String banner = usuario.banner;
+                        Integer moedas = usuario.moedas;
+                        Float xp = usuario.xp;
 
-                String foto = usuario.foto;
-                String banner = usuario.banner;
 
-                //Salvo o link da foto
-                String link_foto =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
-                        + foto
-                        + "?t=" + System.currentTimeMillis();
 
-                //Salvo o link do banner
-                String link_banner =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/banner/"
-                        + banner
-                        + "?t=" + System.currentTimeMillis();
+                        //Atualizo as informações para não rodar cache
+                        txtNomePerfil.setText(nome);
+                        txtPatente.setText(patente);
+                        txtQuantGemas.setText(String.valueOf(moedas));
+                        txtQuantXP.setText(String.valueOf(xp));
 
-                //Carrega a foto atual do usuario
-                Glide.with(requireContext())
-                        .load(link_foto)
-                        .skipMemoryCache(true)
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .into(imgFotoPerfil);
 
-                //Carrega o banner atual do usuario
-                Glide.with(requireContext())
-                        .load(link_banner)
-                        .skipMemoryCache(true)
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .into(imgBanner);
-            }
-        });
-    }
+
+
+                        //Salvo o link da foto
+                        String link_foto =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
+                                + foto
+                                + "?t=" + System.currentTimeMillis();
+
+                        //Salvo o link do banner
+                        String link_banner =  "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/banner/"
+                                + banner
+                                + "?t=" + System.currentTimeMillis();
+
+                        //Carrega a foto atual do usuario
+                        Glide.with(requireContext())
+                                .load(link_foto)
+                                .skipMemoryCache(true)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .into(imgFotoPerfil);
+
+                        //Carrega o banner atual do usuario
+                        Glide.with(requireContext())
+                                .load(link_banner)
+                                .skipMemoryCache(true)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .into(imgBanner);
+                    }
+                });//Perfil
+
+            }//
+        });//Token
+
+
+    }//Foto
 
     private void setImage(Uri uri) {
         if (!isAdded()) return;
@@ -282,20 +341,34 @@ public class Perfil_Fragment extends Fragment {
         String foto = prefs.getString("foto", null);
 
         //Verifico se vai adicionar ou alterar
-        if("default.png".equals(foto))
-        {
+        if("default.png".equals(foto)) {
             //Add a foto
             Toast.makeText(getContext(), "Adicionando Foto..", Toast.LENGTH_LONG).show();
-            User.Adicionar_Foto(requireContext(),prefs,uri,imgFotoPerfil);
 
+            //Verifico o token
+            Auth.verificarToken(requireActivity(), prefs, true, new Auth.AuthCallback() {
 
-        }
-        else
+                @Override
+                public void onSuccess() {
+                    //Se token for valido executo a requisição
+                    User.Adicionar_Foto(requireContext(), prefs, uri, imgFotoPerfil);
+
+                }
+            });
+        }else
         {
             //Altero a foto
             Toast.makeText(getContext(), "Alterando Foto..", Toast.LENGTH_LONG).show();
-            User.Alterar_Foto(requireContext(),prefs,uri,imgFotoPerfil);
 
+            //Verifico o token
+            Auth.verificarToken(requireActivity(), prefs, true, new Auth.AuthCallback() {
+
+                @Override
+                public void onSuccess() {
+                    //Se token for valido executo a requisição
+                    User.Alterar_Foto(requireContext(),prefs,uri,imgFotoPerfil);
+                }
+            });
 
         }
 
@@ -312,15 +385,31 @@ public class Perfil_Fragment extends Fragment {
         if ("default.png".equals(banner)) {
             //Add o banner
             Toast.makeText(getContext(), "Adicionando Banner...", Toast.LENGTH_LONG).show();
-            User.Adicionar_Banner(requireContext(), prefs, uri, imgBanner);
+
+            //Verifico o token
+            Auth.verificarToken(requireActivity(), prefs, true, new Auth.AuthCallback() {
+
+                @Override
+                public void onSuccess() {
+                    //Se token for valido executo a requisição
+                    User.Adicionar_Banner(requireContext(), prefs, uri, imgBanner);
+                }
+            });
+
 
 
         } else {
             //Altero o banner
             Toast.makeText(getContext(), "Alterando Banner...", Toast.LENGTH_LONG).show();
-            User.Alterar_Banner(requireContext(), prefs, uri, imgBanner );
+            //Verifico o token
+            Auth.verificarToken(requireActivity(), prefs, true, new Auth.AuthCallback() {
 
-
+                @Override
+                public void onSuccess() {
+                    //Se token for valido executo a requisição
+                    User.Alterar_Banner(requireContext(), prefs, uri, imgBanner );
+                }
+            });
         }
     }
 

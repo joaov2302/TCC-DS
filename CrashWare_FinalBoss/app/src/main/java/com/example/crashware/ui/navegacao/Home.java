@@ -9,13 +9,14 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.crashware.ui.BaseActivity.BaseActivity;
 import com.example.crashware.ui.anotacoes.Anotacoes_fragment;
 import com.example.crashware.ui.aulas.EscolhaTrilha_fragment;
 import com.example.crashware.ui.perfil.Perfil_Fragment;
 import com.example.crashware.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Home extends AppCompatActivity {
+public class Home extends BaseActivity {
 
     // Fragmentos instanciados
     private Fragment inicio    = new Inicio_fragment();

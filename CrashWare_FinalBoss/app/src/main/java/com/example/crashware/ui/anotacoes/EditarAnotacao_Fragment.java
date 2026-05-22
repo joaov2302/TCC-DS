@@ -13,7 +13,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import com.example.crashware.R;
 
@@ -28,6 +33,8 @@ public class EditarAnotacao_Fragment extends Fragment {
     Button btnEditarAnotacao;
     EditText txtAnotacao, txtTituloAnotacao;
     ImageView imgVoltarAnotacoes;
+
+    TextView txtDataEdicao, txtDataCriacao;
 
     //Váriaveis utilizadas
     boolean EstadoAnotacao = false;
@@ -46,10 +53,12 @@ public class EditarAnotacao_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_editar_anotacao, container, false);
 
         //Inicia o Layout no Código
-        txtAnotacao = view.findViewById(R.id.txtAnotacao);
-        txtTituloAnotacao = view.findViewById(R.id.txtTituloAnotacao);
-        btnEditarAnotacao = view.findViewById(R.id.btnEditarAnotacao);
-        imgVoltarAnotacoes = view.findViewById(R.id.imgVoltarNovaAnotacao);
+        txtAnotacao        = view.findViewById(R.id.txtAnotacao          );
+        txtTituloAnotacao  = view.findViewById(R.id.txtTituloAnotacao    );
+        btnEditarAnotacao  = view.findViewById(R.id.btnEditarAnotacao    );
+        imgVoltarAnotacoes = view.findViewById(R.id.imgVoltarCampos);
+        txtDataCriacao     = view.findViewById(R.id.txtDataCriacao       );
+        txtDataEdicao      = view.findViewById(R.id.txtDataEdicao        );
 
         //Inicia o Shared Preferences
         prefs = requireActivity().getSharedPreferences("dados", MODE_PRIVATE);
@@ -61,8 +70,15 @@ public class EditarAnotacao_Fragment extends Fragment {
             String titulo = getArguments().getString("titulo");
             String conteudo = getArguments().getString("conteudo");
 
+            String dataCriacao = getArguments().getString("dataCriacao");
+            String dataEdicao = getArguments().getString("dataEdicao");
+
+
             txtTituloAnotacao.setText(titulo);
             txtAnotacao.setText(conteudo);
+
+            txtDataCriacao.setText(dataCriacao);
+            txtDataEdicao.setText(dataEdicao);
         }
 
         // travado inicialmente
@@ -97,6 +113,7 @@ public class EditarAnotacao_Fragment extends Fragment {
                 try {
                     String novoTitulo = txtTituloAnotacao.getText().toString();
                     String novoConteudo = txtAnotacao.getText().toString();
+                    String novaDataEdicao = pegarDataAtual();
 
                     String json = prefs.getString("lista_anotacoes", "[]");
                     JSONArray array = new JSONArray(json);
@@ -107,6 +124,9 @@ public class EditarAnotacao_Fragment extends Fragment {
 
                         obj.put("titulo", novoTitulo);
                         obj.put("conteudo", novoConteudo);
+                        obj.put("dataEdicao", novaDataEdicao);
+
+                        txtDataEdicao.setText(novaDataEdicao);
 
                         prefs.edit()
                                 .putString("lista_anotacoes", array.toString())
@@ -129,5 +149,13 @@ public class EditarAnotacao_Fragment extends Fragment {
         });
 
         return view;
+    }
+
+    private String pegarDataAtual()
+    {
+        SimpleDateFormat formato =
+                new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
+
+        return formato.format(new Date());
     }
 }

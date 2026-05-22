@@ -30,7 +30,7 @@
 
     <!-- DATA -->
     <TextView
-        android:id="@+id/txtdata"
+        android:id="@+id/txtData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 

@@ -35,7 +35,7 @@ android:background="@color/fundo_claro">
 
             <!-- Adicionar Anotacao -->
             <ImageView
-                android:id="@+id/imgVoltarNovaAnotacao"
+                android:id="@+id/imgVoltarCampos"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/seta_icon"
@@ -556,7 +556,7 @@ android:background="@color/fundo_claro">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/righteous"
-            android:text="Bloquadas"
+            android:text="Bloqueadas"
             android:textAllCaps="true"
             android:textColor="@color/azul"
             android:textSize="20sp"

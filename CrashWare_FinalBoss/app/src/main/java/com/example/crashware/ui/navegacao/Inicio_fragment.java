@@ -1,5 +1,6 @@
 package com.example.crashware.ui.navegacao;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -24,15 +26,19 @@ import com.example.crashware.ui.api.User;
 import com.example.crashware.ui.aulas.ModuloHardware;
 import com.example.crashware.ui.aulas.ModuloSoftware;
 import com.example.crashware.ui.sistemas.Ofensiva_Manager;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.imageview.ShapeableImageView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Calendar;
+import android.animation.ObjectAnimator;
+import android.view.animation.DecelerateInterpolator;
+import android.animation.ValueAnimator;
+
+import com.example.crashware.ui.sistemas.XP_Manager;
+
 
 public class Inicio_fragment extends Fragment {
 
@@ -41,6 +47,7 @@ public class Inicio_fragment extends Fragment {
 
     private TextView txtNomeInicio, txtAulasConcluidas, txtOfensiva, txtNivelInicio, txtXpInicio;
     private ShapeableImageView imgfotoInicio;
+    ImageView imgNotificacoes;
 
     private FirebaseAuth auth;
     private DatabaseReference db;
@@ -56,9 +63,7 @@ public class Inicio_fragment extends Fragment {
 
     Button btnRetomar;
 
-    int XpParaBarra = 350;
-
-    int nivel = 1;
+    XP_Manager XP_Manager;
 
     // =========================
     // OFENSIVA
@@ -74,12 +79,14 @@ public class Inicio_fragment extends Fragment {
 
         prefs = requireContext().getSharedPreferences("CrashWare", Context.MODE_PRIVATE);
 
-        // Verificando Token
-        Verificar_Token();
 
         // Coleto as informações do usuário
         Perfil();
 
+        //Adiciono a conquista de login
+        PrimeiroLogin();
+
+        XP_Manager = new XP_Manager(requireContext());
 
 
         auth = FirebaseAuth.getInstance();
@@ -96,19 +103,20 @@ public class Inicio_fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_inicio, container, false);
 
         // iniciando os elementos através do view
-        txtNomeInicio       = view.findViewById(R.id.txtNomeInicio);
-        imgfotoInicio       = view.findViewById(R.id.imgFotoInicio);
+        txtNomeInicio       = view.findViewById(R.id.txtNomeInicio           );
+        imgfotoInicio       = view.findViewById(R.id.imgFotoInicio           );
         txtAulasConcluidas  = view.findViewById(R.id.txtNumeroAulasConcluidas);
-        txtOfensiva         = view.findViewById(R.id.txtDiasConsecutivos);
-        btnRetomarH         = view.findViewById(R.id.btnRetomarH);
-        btnRetomarS         = view.findViewById(R.id.btnRetomarS);
-        txtNivelInicio      = view.findViewById(R.id.txtNivelInicio);
-        BarraProgressoNivel = view.findViewById(R.id.BarraProgressoNivel);
-        btnRetomar          = view.findViewById(R.id.btnRetomar);
-        txtXpInicio         = view.findViewById(R.id.txtXPInicio);
+        txtOfensiva         = view.findViewById(R.id.txtDiasConsecutivos     );
+        btnRetomarH         = view.findViewById(R.id.btnRetomarH             );
+        btnRetomarS         = view.findViewById(R.id.btnRetomarS             );
+        txtNivelInicio      = view.findViewById(R.id.txtNivelInicio          );
+        BarraProgressoNivel = view.findViewById(R.id.BarraProgressoAula      );
+        btnRetomar          = view.findViewById(R.id.btnRetomar              );
+        txtXpInicio         = view.findViewById(R.id.txtXPInicio             );
+        imgNotificacoes     = view.findViewById(R.id.layoutSino              );
 
-        // funções que vão ser utilizadas
-        carregarNomeFirebase();
+        // Atualiza a interface de XP e nível
+        atualizarInterfaceXp();
 
 
         //Chamar função Ofensiva
@@ -118,6 +126,7 @@ public class Inicio_fragment extends Fragment {
         int ofensiva = ofensivaManager.verificarOfensiva();
 
         txtOfensiva.setText(ofensiva + " dias");
+
 
 
 
@@ -136,8 +145,11 @@ public class Inicio_fragment extends Fragment {
 
         btnRetomar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                BarraXp();
+            public void onClick(View view)
+            {
+                XP_Manager.adicionarXp(50);
+
+                atualizarInterfaceXp();
             }
         });
 
@@ -159,6 +171,19 @@ public class Inicio_fragment extends Fragment {
             }
         });
 
+        imgNotificacoes.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                BottomSheetDialog dialog = new BottomSheetDialog(requireContext());
+
+                dialog.setContentView(R.layout.dialog_notificacoes);
+
+                dialog.show();
+            }
+        });//Interação com imagem de notificações
+
         return view;
     }
 
@@ -173,44 +198,62 @@ public class Inicio_fragment extends Fragment {
     // XP / NÍVEL
     // =========================
 
-    private void PassarNivel() {
-
-        nivel++;
-
-        txtNivelInicio.setText("Nivel " + nivel);
-
-        BarraProgressoNivel.setProgress(0);
-
-        String XpAtual = XpParaBarra + "/" + BarraProgressoNivel.getMax() + "XP";
-        txtXpInicio.setText(XpAtual);
-    }//Função utilizada ao Passar de Nivel
-
-    private void BarraXp()
+    private void atualizarInterfaceXp()
     {
+        int nivel = XP_Manager.getNivel();
 
-        XpParaBarra += 50;
+        int xp = (int) XP_Manager.getXp();
 
-        while (XpParaBarra >= BarraProgressoNivel.getMax()) {
+        txtNivelInicio.setText("Nível " + nivel);
 
-            XpParaBarra -= BarraProgressoNivel.getMax();
-            PassarNivel();
-        }
+        // Animação da Barra de XP
+        ObjectAnimator animacaoBarra = ObjectAnimator.ofInt
+                (
+                BarraProgressoNivel,
+                "progress",
+                BarraProgressoNivel.getProgress(),
+                xp
+                );
 
-        BarraProgressoNivel.setProgress(XpParaBarra);
+        animacaoBarra.setDuration(700);
 
-        String XpAtual = XpParaBarra + "/" + BarraProgressoNivel.getMax() + "XP";
-        txtXpInicio.setText(XpAtual);
-    }//Função utilizada para Alterar a Barra de XP
+        animacaoBarra.setInterpolator(new DecelerateInterpolator());
+
+        animacaoBarra.start();
+
+
+        // Animação para o texto de XP
+        ValueAnimator animacaoTexto = ValueAnimator.ofInt(
+                Integer.parseInt(
+                        txtXpInicio.getText()
+                                .toString()
+                                .split("/")[0]
+                                .replace(" XP", "")
+                ),
+                xp
+        );
+
+        animacaoTexto.setDuration(700);
+
+        animacaoTexto.addUpdateListener(animation -> {
+
+            int valorAtual = (int) animation.getAnimatedValue();
+
+            txtXpInicio.setText(valorAtual + "/" + BarraProgressoNivel.getMax() + " XP");
+        });
+
+        animacaoTexto.start();
+    }//
 
 
     // =========================
     // TOKEN
     // =========================
 
-    private void Verificar_Token() {
 
-        Auth.verificarToken(requireContext(), prefs, true);
-    }
+
+
+
 
     // =========================
     // PERFIL
@@ -218,49 +261,78 @@ public class Inicio_fragment extends Fragment {
 
     private void Perfil() {
 
-        User.Perfil(requireContext(), prefs, new User.PerfilCallback() {
+        //Verifico o token
+        Auth.verificarToken(requireActivity(), prefs, true, new Auth.AuthCallback() {
+
             @Override
-            public void sucesso(User.PerfilResponse usuario) {
-
-                String nome = usuario.nome;
+            public void onSuccess() {
 
 
-                Integer nivel = usuario.nivel;
-                String banner = usuario.banner;
-                //Float xp = usuario.xp;
+                //Se token for valido executo a requisição
+                User.Perfil(requireContext(), prefs, new User.PerfilCallback() {
+
+                    @Override
+                    public void sucesso(User.PerfilResponse usuario) {
+
+                        String nome = usuario.nome;
+
+                        String banner = usuario.banner;
+
+                        Integer moedas = usuario.moedas;
+                        Float xp = usuario.xp;
 
 
-                String foto = usuario.foto;
+                        String foto = usuario.foto;
 
-                // Salvo os dados no SharedPreferences
-                prefs.edit()
-                        .putString("foto", foto)
+                        // Salvo os dados no SharedPreferences
+                        prefs.edit()
+                                .putString("foto", foto)
+                                .putString("nome", nome)
+                                .putString("banner",banner)
+                                .putInt("moedas",moedas)
+                                .putFloat("xp",xp)
+                                .putInt("nivel", XP_Manager.getNivel())
 
-                        .putString("nome", nome)
+                                .commit();
 
-                        .putString("nome",nome)
-                        .putString("banner",banner)
-                        .putInt("nivel",nivel)
+                        // Link da foto
+                        String link_foto =
+                                "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
+                                        + foto
+                                        + "?t=" + System.currentTimeMillis();
 
-                        .commit();
+                        // Carrega foto
+                        Glide.with(requireContext())
+                                .load(link_foto)
+                                .skipMemoryCache(true)
+                                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                .into(imgfotoInicio);
 
-                // Link da foto
-                String link_foto =
-                        "https://yegrosiecwjebeetlwwg.supabase.co/storage/v1/object/public/FOTOS/"
-                                + foto
-                                + "?t=" + System.currentTimeMillis();
+                        // Atualiza nome
+                        txtNomeInicio.setText(nome);
+                    }
+                });//Perfil
 
-                // Carrega foto
-                Glide.with(requireContext())
-                        .load(link_foto)
-                        .skipMemoryCache(true)
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .into(imgfotoInicio);
+            }//
+        });//Token
 
-                // Atualiza nome
-                txtNomeInicio.setText(nome);
-            }
-        });
+
+
+    }//Perfil
+
+
+    private void PrimeiroLogin() {
+        //Conquista do primeiro login
+
+
+        Boolean PrimeiroLogin = prefs.getBoolean("PrimeiroLogin",false);
+
+        if(PrimeiroLogin == true)
+        {
+            User.Conquista(9,prefs,requireContext());
+        }
+
+
     }
 
     // =========================
@@ -284,42 +356,6 @@ public class Inicio_fragment extends Fragment {
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(imgfotoInicio);
-    }
-
-    // =========================
-    // FIREBASE (NOME)
-    // =========================
-
-    private void carregarNomeFirebase() {
-
-        if (auth.getCurrentUser() == null) return;
-
-        String uid = auth.getCurrentUser().getUid();
-
-        nomeListener = new ValueEventListener() {
-
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                if (!isAdded()) return;
-
-                if (snapshot.exists()) {
-
-                    // Caso queira usar futuramente
-                    // String nome_firebase = snapshot.child("nome").getValue(String.class);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-                if (isAdded()) {
-                    txtNomeInicio.setText("Erro");
-                }
-            }
-        };
-
-        db.child(uid).addValueEventListener(nomeListener);
     }
 
     // =========================

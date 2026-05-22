@@ -106,11 +106,9 @@ public class carregamento extends AppCompatActivity {
                 } else {
 
                     //Verifico o token
-                    Auth.verificarToken(carregamento.this,prefs,false);
+                    Auth.verificarToken(carregamento.this,prefs,false,null);
 
-//                    Intent intent = new Intent(carregamento.this, destino);
-//                    startActivity(intent);
-//                    finish();
+
                 }
             }
         };

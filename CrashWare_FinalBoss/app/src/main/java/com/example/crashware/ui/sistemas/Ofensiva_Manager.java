@@ -3,9 +3,11 @@ package com.example.crashware.ui.sistemas;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.crashware.ui.BaseActivity.BaseActivity;
+
 import java.util.Calendar;
 
-public class Ofensiva_Manager {
+public class Ofensiva_Manager extends BaseActivity {
 
     //Shared Preferences que vai salvar localmente
     private final SharedPreferences prefs;
